@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up - AI Traffic Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #004d80;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"], .toggle-button {
+            background-color: #004d80;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover, .toggle-button:hover {
+            background-color: #00335a;
+        }
+
+        .dropdown-group {
+            margin-bottom: 20px;
+        }
+
+        .toggle-button {
+            background-color: transparent;
+            border: none;
+            color: #004d80;
+            text-align: center;
+            margin-top: 0;
+            cursor: pointer;
+        }
+
+        .toggle-button:hover {
+            color: #00335a;
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            color: #004d80;
+            font-size: 14px;
+            text-align: right;
+            cursor: pointer;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+            color: #00335a;
+        }
+
+        .toggle-button {
+            font-size: 14px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="form-title">Login</h1>
+
+    <form id="auth-form" action="#" method="post">
+
+        <!-- Dropdown for selecting user type -->
+        <div class="dropdown-group">
+            <label for="user-type">Login As:</label>
+            <select id="user-type" name="user-type" onchange="displayFields()">
+                <option value="public">General Public</option>
+                <option value="officer">Traffic Officer</option>
+            </select>
+        </div>
+
+        <!-- Fields for Traffic Officer -->
+        <div id="officer-fields" style="display: none;">
+            <label for="badge-number">Badge Number:</label>
+            <input type="text" id="badge-number" name="badge-number" placeholder="Enter your badge number">
+
+            <label for="officer-password">Password:</label>
+            <input type="password" id="officer-password" name="officer-password" placeholder="Enter your password">
+
+            <!-- Dropdown for selecting station -->
+            <label for="station">Select Station:</label>
+            <select id="station" name="station">
+                <!-- North India -->
+                <optgroup label="North India">
+                    <option value="Delhi">Delhi Traffic Police Station</option>
+                    <option value="Chandigarh">Chandigarh Traffic Police Station</option>
+                    <option value="Amritsar">Amritsar Traffic Police Station</option>
+                    <option value="Lucknow">Lucknow Traffic Police Station</option>
+                    <option value="Jaipur">Jaipur Traffic Police Station</option>
+                </optgroup>
+
+                <!-- South India -->
+                <optgroup label="South India">
+                    <option value="Bangalore">Bangalore Traffic Police Station</option>
+                    <option value="Chennai">Chennai Traffic Police Station</option>
+                    <option value="Hyderabad">Hyderabad Traffic Police Station</option>
+                    <option value="Kochi">Kochi Traffic Police Station</option>
+                    <option value="Thiruvananthapuram">Thiruvananthapuram Traffic Police Station</option>
+                </optgroup>
+
+                <!-- East India -->
+                <optgroup label="East India">
+                    <option value="Kolkata">Kolkata Traffic Police Station</option>
+                    <option value="Patna">Patna Traffic Police Station</option>
+                    <option value="Bhubaneswar">Bhubaneswar Traffic Police Station</option>
+                    <option value="Ranchi">Ranchi Traffic Police Station</option>
+                    <option value="Guwahati">Guwahati Traffic Police Station</option>
+                </optgroup>
+
+                <!-- West India -->
+                <optgroup label="West India">
+                    <option value="Mumbai">Mumbai Traffic Police Station</option>
+                    <option value="Pune">Pune Traffic Police Station</option>
+                    <option value="Ahmedabad">Ahmedabad Traffic Police Station</option>
+                    <option value="Surat">Surat Traffic Police Station</option>
+                    <option value="Goa">Goa Traffic Police Station</option>
+                </optgroup>
+
+                <!-- Central India -->
+                <optgroup label="Central India">
+                    <option value="Bhopal">Bhopal Traffic Police Station</option>
+                    <option value="Indore">Indore Traffic Police Station</option>
+                    <option value="Nagpur">Nagpur Traffic Police Station</option>
+                    <option value="Raipur">Raipur Traffic Police Station</option>
+                    <option value="Jabalpur">Jabalpur Traffic Police Station</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <!-- Fields for General Public -->
+        <div id="public-fields">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+        </div>
+
+        <!-- Email for Sign-Up -->
+        <div id="email-field" style="display: none;">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Login" id="submit-btn">
+
+        <!-- Forgot Password -->
+        <p class="forgot-password" id="forgot-password" onclick="alert('Forgot password clicked')">Forgot password?</p>
+
+        <!-- Toggle between Login and Sign Up -->
+        <button type="button" class="toggle-button" onclick="toggleForm()">Don't have an account? Sign up</button>
+    </form>
+</div>
+
+<script>
+    // Function to display relevant fields based on user type
+    function displayFields() {
+        var userType = document.getElementById('user-type').value;
+        var officerFields = document.getElementById('officer-fields');
+        var publicFields = document.getElementById('public-fields');
+
+        if (userType === 'officer') {
+            officerFields.style.display = 'block';
+            publicFields.style.display = 'none';
+        } else {
+            officerFields.style.display = 'none';
+            publicFields.style.display = 'block';
+        }
+    }
+
+    // Toggle between Login and Sign-Up forms
+    function toggleForm() {
+        var formTitle = document.getElementById('form-title');
+        var submitBtn = document.getElementById('submit-btn');
+        var emailField = document.getElementById('email-field');
+        var forgotPassword = document.getElementById('forgot-password');
+        var toggleButton = document.querySelector('.toggle-button');
+
+        if (submitBtn.value === 'Login') {
+            // Switch to Sign-Up
+            formTitle.innerText = 'Sign Up';
+            submitBtn.value = 'Sign Up';
+            emailField.style.display = 'block';
+            forgotPassword.style.display = 'none';
+            toggleButton.innerText = 'Already have an account? Login';
+        } else {
+            // Switch to Login
+            formTitle.innerText = 'Login';
+            submitBtn.value = 'Login';
+            emailField.style.display = 'none';
+            forgotPassword.style.display = 'block';
+            toggleButton.innerText = "Don't have an account? Sign up";
+        }
+    }
+</script>
+
+</body>
+</html>
